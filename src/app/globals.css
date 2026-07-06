@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f4f5;
+  --foreground: #18181b;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Panel del local: usa --brand definido en el layout de cada hamburguesería */
+[data-dashboard-brand] {
+  accent-color: var(--brand);
+}
+
+[data-dashboard-brand] input[type="checkbox"],
+[data-dashboard-brand] input[type="radio"] {
+  accent-color: var(--brand) !important;
+}
+
+[data-dashboard-brand] input:not([type="color"]):focus,
+[data-dashboard-brand] textarea:focus {
+  border-color: var(--brand) !important;
+  --tw-ring-color: color-mix(in srgb, var(--brand) 18%, transparent) !important;
+}
+
+[data-dashboard-brand] .dash-text-brand {
+  color: var(--brand);
+}
+
+[data-dashboard-brand] .dash-link-brand {
+  color: var(--brand);
+}
+
+[data-dashboard-brand] .dash-link-brand:hover {
+  background-color: color-mix(in srgb, var(--brand) 10%, white);
+}
+
+[data-dashboard-brand] .dash-nav-active {
+  border-bottom: 2px solid var(--brand);
+  color: #18181b;
+}
+
+[data-dashboard-brand] .dash-btn-brand {
+  border-radius: 0.5rem;
+  background-color: var(--brand);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+}
+
+[data-dashboard-brand] .dash-btn-brand:hover:not(:disabled) {
+  filter: brightness(0.92);
+}
+
+[data-dashboard-brand] .dash-btn-brand:disabled {
+  opacity: 0.6;
+}
+
+[data-dashboard-brand] .dash-btn-brand-lg {
+  display: inline-flex;
+  width: 100%;
+  shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: var(--brand);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+@media (min-width: 640px) {
+  [data-dashboard-brand] .dash-btn-brand-lg {
+    width: auto;
+  }
+}
+
+[data-dashboard-brand] .dash-btn-brand-lg:hover {
+  filter: brightness(0.92);
+}
+
+[data-dashboard-brand] .dash-btn-brand-outline {
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--brand) 30%, white);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--brand);
+}
+
+[data-dashboard-brand] .dash-btn-brand-outline:hover {
+  background-color: color-mix(in srgb, var(--brand) 8%, white);
+}
+
+[data-dashboard-brand] .dash-badge-brand {
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--brand) 15%, white);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+[data-dashboard-brand] .dash-upload-label:hover {
+  border-color: color-mix(in srgb, var(--brand) 55%, white);
+  background-color: color-mix(in srgb, var(--brand) 8%, white);
+}
+
+/* Ticketera 80mm — solo imprime #ticket-print-area */
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 2mm;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #ticket-print-area,
+  #ticket-print-area * {
+    visibility: visible;
+  }
+
+  #ticket-print-area {
+    display: block !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 72mm;
+  }
+
+  .ticket-print-pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: ui-monospace, "Courier New", monospace;
+    font-size: 11px;
+    line-height: 1.35;
+    color: #000;
+  }
+}
